@@ -4,4 +4,4 @@ import Medusa
 
 main = do
   [fileName] <- getArgs
-  timestampAndMove "closed" fileName
+  timestampAndMove "canceled" fileName

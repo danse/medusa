@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                medusa
-version:             0.1.1.0
+version:             0.1.2.0
 -- synopsis:            
 -- description:         
 -- license:             
@@ -15,26 +15,32 @@ build-type:          Simple
 -- extra-source-files:  
 cabal-version:       >=1.10
 
+library
+  exposed-modules:     Medusa
+  build-depends:       base >=4.8 && <4.9, time, directory
+  hs-source-dirs:      lib
+  default-language:    Haskell2010
+
 executable medusa-start
   main-is:             medusa-start.hs
-  build-depends:       base >=4.8 && <4.9, time, directory
+  build-depends:       base >=4.8 && <4.9, time, medusa
   hs-source-dirs:      src
   default-language:    Haskell2010
 
 executable medusa-start-and-write
   main-is:             medusa-start-and-write.hs
-  build-depends:       base >=4.8 && <4.9, time, directory
+  build-depends:       base >=4.8 && <4.9, time, medusa
   hs-source-dirs:      src
   default-language:    Haskell2010
 
 executable medusa-stop
   main-is:             medusa-stop.hs
-  build-depends:       base >=4.8 && <4.9, time, directory
+  build-depends:       base >=4.8 && <4.9, time, medusa
   hs-source-dirs:      src
   default-language:    Haskell2010
 
-library
-  exposed-modules:     Medusa
-  build-depends:       base >=4.8 && <4.9, time
+executable medusa-cancel
+  main-is:             medusa-cancel.hs
+  build-depends:       base >=4.8 && <4.9, time, medusa
   hs-source-dirs:      src
   default-language:    Haskell2010
