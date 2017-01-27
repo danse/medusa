@@ -12,11 +12,9 @@ medusaTimestampFile fileName = do
   t <- getCurrentTime
   withFile fileName AppendMode ((flip hPutStrLn) (medusaTimeFormat t))
 
-timestampAndMove dir fileName = do
-  dirExists <- doesDirectoryExist dir
-  if dirExists
-    then
-    do 
-      medusaTimestampFile fileName
-      renameFile fileName (dir++"/"++fileName)
-    else (print $ "Directory `"++dir++"/` does not exist")
+timestampAndMove dir fileName =
+  let medusaDir = ".medusa/" ++ dir
+  in do
+    createDirectoryIfMissing True medusaDir
+    medusaTimestampFile fileName
+    renameFile fileName (medusaDir ++ "/" ++ fileName)
